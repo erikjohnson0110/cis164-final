@@ -14,7 +14,7 @@ public:
     Inventory();
     ~Inventory();
     Item* getItemByVendCode(string vc);
-    void addItem(string vc, Item &item);
+    bool addItem(string vc, Item &item);
     bool removeItem(string vc);
 };
 

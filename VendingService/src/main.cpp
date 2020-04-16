@@ -19,8 +19,10 @@ int main()
     itemTwo->setSize(2);
     itemTwo->setSizeUnits("Ounce");
 
-    inv->addItem("A1", *itemOne);
-    inv->addItem("A2", *itemTwo);
+    bool itemOneIsAdded = inv->addItem("A1", *itemOne);
+    cout << (itemOneIsAdded ? "Added Successfully" : "Not Added") << endl;
+    bool itemTwoIsAdded = inv->addItem("A2", *itemTwo);
+    cout << (itemOneIsAdded ? "Added Successfully" : "Not Added") << endl << endl;
 
     cout << "Item A1: " << inv->getItemByVendCode("A1")->getName() << endl;
     cout << "Item A2: " << inv->getItemByVendCode("A2")->getName() << endl;

@@ -15,15 +15,23 @@ Item* Inventory::getItemByVendCode(string vc){
     }
     catch (const std::out_of_range& oor)
     {
-
+        returnVal = nullptr;
     }
     return returnVal;
 }
 
-void Inventory::addItem(string vc, Item &item){
-    //this->items.insert(std::pair<string, Item*>(vc,item));
-    this->items[vc] = &item;
-
+bool Inventory::addItem(string vc, Item &item){
+    bool returnVal = false;
+    try
+    {
+        this->items.at(vc);
+    }
+    catch (const std::out_of_range& oor)
+    {
+        this->items[vc] = &item;
+        returnVal = true;
+    }
+    return returnVal;
 }
 
 bool Inventory::removeItem(string vc){
