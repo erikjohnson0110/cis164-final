@@ -1,8 +1,29 @@
-#include <QCoreApplication>
+#include <memory>
+#include <iostream>
+#include "inventory.h"
+#include "item.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
+    unique_ptr<Inventory> inv = make_unique<Inventory>();
 
-    return a.exec();
+    unique_ptr<Item> itemOne = make_unique<Item>();
+    itemOne->setName("Mountain Dew");
+    itemOne->setQuantity(12);
+    itemOne->setSize(20.0);
+    itemOne->setSizeUnits("Fluid Ounce");
+
+    unique_ptr<Item> itemTwo = make_unique<Item>();
+    itemTwo->setName("Slim Jim");
+    itemTwo->setQuantity(25);
+    itemTwo->setSize(2);
+    itemTwo->setSizeUnits("Ounce");
+
+    inv->addItem("A1", *itemOne);
+    inv->addItem("A2", *itemTwo);
+
+    cout << "Item A1: " << inv->getItemByVendCode("A1")->getName() << endl;
+    cout << "Item A2: " << inv->getItemByVendCode("A2")->getName() << endl;
+
+    return 0;
 }

@@ -1,0 +1,4 @@
+#ifndef VENDINGMACHINE_H
+#define VENDINGMACHINE_H
+
+#endif // VENDINGMACHINE_H
