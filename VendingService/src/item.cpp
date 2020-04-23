@@ -42,3 +42,45 @@ string Item::getSizeUnits(){
 void Item::setSizeUnits(string su){
     this->sizeUnits = su;
 }
+
+void Item::readJson(const QJsonObject &json){
+    // name
+    if (json.contains("name") && json["name"].isString()){
+            this->setName(json["name"].toString().toStdString());
+    }
+    else
+    {
+        this->setName(nullptr);
+    }
+
+    // quantity
+    if (json.contains("quantity") && json["quantity"].isDouble()){
+        this->setQuantity(json["quantity"].toInt());
+    }
+    else{
+        this->setQuantity(0);
+    }
+
+    // size
+    if (json.contains("size") && json["size"].isDouble()){
+        this->setQuantity(json["size"].toDouble());
+    }
+    else{
+        this->setQuantity(0.0);
+    }
+
+    // sizeUnits
+    if (json.contains("sizeUnits") && json["sizeUnits"].isString()){
+            this->setSizeUnits(json["sizeUnits"].toString().toStdString());
+    }
+    else
+    {
+        this->setSizeUnits(nullptr);
+    }
+}
+void Item::writeJson(QJsonObject &json) const{
+    json["name"] =  QString::fromStdString(this->name);
+    json["quantity"] =  this->quantity;
+    json["size"] =  this->size;
+    json["sizeUnits"] =  QString::fromStdString(this->sizeUnits);
+}

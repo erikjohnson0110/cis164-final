@@ -2,6 +2,7 @@
 #include <iostream>
 #include "inventory.h"
 #include "item.h"
+#include "httpserver.h"
 
 int main()
 {
@@ -26,6 +27,9 @@ int main()
 
     cout << "Item A1: " << inv->getItemByVendCode("A1")->getName() << endl;
     cout << "Item A2: " << inv->getItemByVendCode("A2")->getName() << endl;
+
+    HttpServer server;
+    server.startServer(*itemOne);
 
     return 0;
 }

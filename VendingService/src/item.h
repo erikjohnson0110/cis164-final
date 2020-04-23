@@ -1,6 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <string>
+#include <QJsonObject>
 
 using namespace std;
 
@@ -27,6 +28,10 @@ public:
 
     string getSizeUnits();
     void setSizeUnits(string);
+
+    void readJson(const QJsonObject &json);
+    void writeJson(QJsonObject &json) const;
+
 };
 
 #endif // ITEM_H
