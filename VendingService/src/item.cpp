@@ -43,6 +43,16 @@ void Item::setSizeUnits(string su){
     this->sizeUnits = su;
 }
 
+bool Item::sellItem(){
+    if(this->getQuantity() > 0){
+        this->quantity--;
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 void Item::readJson(const QJsonObject &json){
     // name
     if (json.contains("name") && json["name"].isString()){

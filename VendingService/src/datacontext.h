@@ -11,6 +11,10 @@ class DataContext
 {
 private:
     map<string, Company*> companies;
+    Item* createMountainDew();
+    Item* createBottledWater();
+    Item* createSlimJim();
+    Item* createEggSaladSandwich();
 public:
     DataContext();
     ~DataContext();

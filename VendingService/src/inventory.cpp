@@ -1,3 +1,4 @@
+#include <QJsonArray>
 #include "inventory.h"
 
 Inventory::Inventory(){
@@ -43,4 +44,19 @@ bool Inventory::removeItem(string vc){
     else{
         return false;
     }
+}
+
+void Inventory::readJson(const QJsonObject &json)
+{
+
+}
+void Inventory::writeJson(QJsonObject &json) const
+{
+    QJsonArray allItems;
+    for (pair<string, Item*> i : this->items){
+        QJsonObject jsonObj;
+        i.second->writeJson(jsonObj);
+        allItems.append(jsonObj);
+    }
+    json["inventory"] = allItems;
 }

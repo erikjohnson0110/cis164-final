@@ -65,3 +65,8 @@ VendingMachine* Company::findMachineByLocation(string loc)
     }
     return returnVal;
 }
+
+map<int, VendingMachine*> Company::getAllMachines()
+{
+    return this->machines;
+}

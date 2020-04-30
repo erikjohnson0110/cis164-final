@@ -77,3 +77,56 @@ bool VendingMachine::removeItem(string vc)
 {
     return this->inventory.removeItem(vc);
 }
+
+void VendingMachine::readJson(const QJsonObject &json)
+{
+    //int id;
+    if (json.contains("id") && json["id"].isDouble()){
+            this->setId(json["id"].toInt());
+    }
+    else
+    {
+        this->setId(0);
+    }
+
+    //bool active;
+    if (json.contains("active") && json["active"].isBool()){
+        if (json["active"].toBool())
+        {
+            this->activate();
+        }
+        else
+        {
+            this->deactivate();
+        }
+    }
+    else
+    {
+        this->deactivate();
+    }
+
+    //string location;
+    if (json.contains("location") && json["location"].isString()){
+        this->setLocation(json["location"].toString().toStdString());
+    }
+    else
+    {
+        this->setLocation(nullptr);
+    }
+
+    //MachineModel model;
+    if (json.contains("model") && json["model"].isString()){
+        // TODO
+    }
+    //Inventory inventory;
+        // TODO
+}
+
+void VendingMachine::writeJson(QJsonObject &json) const
+{
+    json["id"] =  this->id;
+    json["active"] =  this->active;
+    json["location"] =  QString::fromStdString(this->location);
+    json["model"] =  QString::fromStdString(machineModelNames[(int)this->model]);
+    this->inventory.writeJson(json);
+}

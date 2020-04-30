@@ -19,6 +19,7 @@ public:
     bool removeMachine(int mid);
     VendingMachine* findMachineById(int mid);
     VendingMachine* findMachineByLocation(string loc);
+    map<int, VendingMachine*> getAllMachines();
 };
 
 #endif // COMPANY_H

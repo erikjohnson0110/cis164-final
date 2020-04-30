@@ -16,6 +16,9 @@ public:
     Item* getItemByVendCode(string vc);
     bool addItem(string vc, Item &item);
     bool removeItem(string vc);
+
+    void readJson(const QJsonObject &json);
+    void writeJson(QJsonObject &json) const;
 };
 
 #endif // INVENTORY_H

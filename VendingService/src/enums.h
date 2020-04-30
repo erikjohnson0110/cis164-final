@@ -1,5 +1,6 @@
 #ifndef ENUMS_H
 #define ENUMS_H
+#include <string>
 
 enum class Weight
 {
@@ -27,5 +28,7 @@ enum class MachineModel
     Vendtron20,
     FoodBoxXD
 };
+
+const std::string machineModelNames[] = {"TK421", "VM4000", "Vendtron20", "FoodBoxXD"};
 
 #endif // ENUMS_H

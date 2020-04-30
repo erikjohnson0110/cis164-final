@@ -29,6 +29,8 @@ public:
     string getSizeUnits();
     void setSizeUnits(string);
 
+    bool sellItem();
+
     void readJson(const QJsonObject &json);
     void writeJson(QJsonObject &json) const;
 
