@@ -7,9 +7,8 @@ Inventory::~Inventory(){
 }
 
 // Gets an item by its vend code.  Returns nullptr if not found.
-Item* Inventory::getItemByVendCode(string vc){
-    Item* returnVal;
-
+InventoryItem* Inventory::getInventoryItemByVendCode(string vc){
+    InventoryItem* returnVal;
     try
     {
         returnVal = this->items.at(vc);
@@ -21,7 +20,7 @@ Item* Inventory::getItemByVendCode(string vc){
     return returnVal;
 }
 
-bool Inventory::addItem(string vc, Item &item){
+bool Inventory::addInventoryItem(string vc, InventoryItem &ii){
     bool returnVal = false;
     try
     {
@@ -29,7 +28,7 @@ bool Inventory::addItem(string vc, Item &item){
     }
     catch (const std::out_of_range& oor)
     {
-        this->items[vc] = &item;
+        this->items[vc] = &ii;
         returnVal = true;
     }
     return returnVal;
@@ -46,16 +45,13 @@ bool Inventory::removeItem(string vc){
     }
 }
 
-void Inventory::readJson(const QJsonObject &json)
-{
-
-}
 void Inventory::writeJson(QJsonObject &json) const
 {
     QJsonArray allItems;
-    for (pair<string, Item*> i : this->items){
+    for (pair<string, InventoryItem*> i : this->items){
         QJsonObject jsonObj;
-        i.second->writeJson(jsonObj);
+        InventoryItem *pt = i.second;
+        pt->writeJson(jsonObj);
         allItems.append(jsonObj);
     }
     json["inventory"] = allItems;

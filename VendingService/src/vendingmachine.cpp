@@ -73,13 +73,13 @@ MachineModel VendingMachine::getModel()
     return this->model;
 }
 
-Item* VendingMachine::getItemByVendCode(string vc)
+InventoryItem* VendingMachine::getInventoryItemByVendCode(string vc)
 {
-    return this->inventory.getItemByVendCode(vc);
+    return this->inventory.getInventoryItemByVendCode(vc);
 }
-bool VendingMachine::addItem(string vc, Item &item)
+bool VendingMachine::addInventoryItem(string vc, InventoryItem &ii)
 {
-    return this->inventory.addItem(vc, item);
+    return this->inventory.addInventoryItem(vc, ii);
 }
 bool VendingMachine::removeItem(string vc)
 {
@@ -132,7 +132,14 @@ void VendingMachine::readJson(const QJsonObject &json)
 
     //MachineModel model;
     if (json.contains("model") && json["model"].isString()){
-        // TODO
+        string modelString = json["model"].toString().toStdString();
+        int size = (int)machineModelNames->size();
+        for (int i = 0; i < size; i++){
+            string ms = machineModelNames[i];
+            if (ms.compare(modelString) == 0){
+                this->model = (MachineModel)i;
+            }
+        }
     }
     //Inventory inventory;
         // TODO

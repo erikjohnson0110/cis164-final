@@ -335,14 +335,14 @@ public:
                     if (company != nullptr){
                         machine = company->findMachineById(machineId);
                         if (machine != nullptr){
-                            Item *item = machine->getItemByVendCode(vendCode);
+                            InventoryItem *item = machine->getInventoryItemByVendCode(vendCode);
                             if (item != nullptr){
                                 bool sold = false;
                                 if (machine->isActive()){
                                     sold = item->sellItem();
                                 }
                                 if (sold){
-                                    machine->setTotalSales((machine->getTotalSales() + item->getPrice()));
+                                    machine->setTotalSales((machine->getTotalSales() + item->getItem()->getPrice()));
                                     responseObject["responseMessage"] = "Item Sold Successfully";
                                 }
                                 else
@@ -405,7 +405,7 @@ public:
                     if (company != nullptr){
                         machine = company->findMachineById(machineId);
                         if (machine != nullptr){
-                            Item *item = machine->getItemByVendCode(vendCode);
+                            InventoryItem *item = machine->getInventoryItemByVendCode(vendCode);
                             if (item != nullptr){
                                 int itemInventory = item->getQuantity();
                                 int numAdded = item->getMaxQuantity() - itemInventory;
@@ -460,7 +460,7 @@ public:
                     if (company != nullptr){
                         machine = company->findMachineById(machineId);
                         if (machine != nullptr){
-                            Item *item = machine->getItemByVendCode(vendCode);
+                            InventoryItem *item = machine->getInventoryItemByVendCode(vendCode);
                             if (item != nullptr){
                                 item->writeJson(responseObject);
                                 QJsonDocument doc(responseObject);

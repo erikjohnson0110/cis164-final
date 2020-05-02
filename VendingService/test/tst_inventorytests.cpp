@@ -2,6 +2,7 @@
 #include <memory>
 #include "item.h"
 #include "inventory.h"
+#include "inventoryitem.h"
 
 // add necessary includes here
 
@@ -42,13 +43,17 @@ void inventorytests::test_case_add_item_return_true()
 
     unique_ptr<Item> testItem = make_unique<Item>();
     testItem->setName("Mountain Dew");
-    testItem->setQuantity(12);
     testItem->setSize(20.0);
     testItem->setSizeUnits("Fluid Ounce");
 
+    unique_ptr<InventoryItem> testInvItem = make_unique<InventoryItem>();
+    testInvItem->setItem(*testItem);
+    testInvItem->setQuantity(12);
+    testInvItem->setMaxQuantity(12);
+
     string testItemCode = "T1";
 
-    bool addResult = inv->addItem(testItemCode, *testItem);
+    bool addResult = inv->addInventoryItem(testItemCode, *testInvItem);
     QCOMPARE(addResult, true);
 
 }
@@ -63,18 +68,28 @@ void inventorytests::test_case_add_item_return_false_if_one_exists_already()
     // Add an item to inventory in slot "T1"
     unique_ptr<Item> testExistingItem = make_unique<Item>();
     testExistingItem->setName("Mountain Dew");
-    testExistingItem->setQuantity(12);
     testExistingItem->setSize(20.0);
     testExistingItem->setSizeUnits("Fluid Ounce");
-    inv->addItem(testItemCode, *testExistingItem);
+
+    unique_ptr<InventoryItem> testInvItem = make_unique<InventoryItem>();
+    testInvItem->setItem(*testExistingItem);
+    testInvItem->setQuantity(12);
+    testInvItem->setMaxQuantity(12);
+
+    inv->addInventoryItem(testItemCode, *testInvItem);
 
     // Attempt to add another item to inventory in slot "T1"
     unique_ptr<Item> testNewItem = make_unique<Item>();
     testNewItem->setName("Big Red Cream Soda");
-    testNewItem->setQuantity(12);
     testNewItem->setSize(20.0);
     testNewItem->setSizeUnits("Fluid Ounce");
-    bool addResult = inv->addItem(testItemCode, *testNewItem);
+
+    unique_ptr<InventoryItem> testSecondInvItem = make_unique<InventoryItem>();
+    testSecondInvItem->setItem(*testNewItem);
+    testSecondInvItem->setQuantity(12);
+    testSecondInvItem->setMaxQuantity(12);
+
+    bool addResult = inv->addInventoryItem(testItemCode, *testSecondInvItem);
 
     QCOMPARE(addResult, false);
 
@@ -88,16 +103,20 @@ void inventorytests::test_case_item_added()
 
     unique_ptr<Item> testItem = make_unique<Item>();
     testItem->setName("Mountain Dew");
-    testItem->setQuantity(12);
     testItem->setSize(20.0);
     testItem->setSizeUnits("Fluid Ounce");
 
+    unique_ptr<InventoryItem> testInvItem = make_unique<InventoryItem>();
+    testInvItem->setItem(*testItem);
+    testInvItem->setQuantity(12);
+    testInvItem->setMaxQuantity(12);
+
     string testItemCode = "T1";
-    inv->addItem(testItemCode, *testItem);
+    inv->addInventoryItem(testItemCode, *testInvItem);
 
-    Item *result = inv->getItemByVendCode(testItemCode);
+    InventoryItem *result = inv->getInventoryItemByVendCode(testItemCode);
 
-    QCOMPARE(&(*testItem), result);
+    QCOMPARE(&(*testInvItem), result);
 }
 
 // test confirms that when an item is not successfully added
@@ -110,22 +129,32 @@ void inventorytests::test_case_item_not_added()
     // Add an item to inventory in slot "T1"
     unique_ptr<Item> testExistingItem = make_unique<Item>();
     testExistingItem->setName("Mountain Dew");
-    testExistingItem->setQuantity(12);
     testExistingItem->setSize(20.0);
     testExistingItem->setSizeUnits("Fluid Ounce");
-    inv->addItem(testItemCode, *testExistingItem);
+
+    unique_ptr<InventoryItem> testExistingInvItem = make_unique<InventoryItem>();
+    testExistingInvItem->setItem(*testExistingItem);
+    testExistingInvItem->setQuantity(12);
+    testExistingInvItem->setMaxQuantity(12);
+
+    inv->addInventoryItem(testItemCode, *testExistingInvItem);
 
     // Attempt to add another item to inventory in slot "T1"
     unique_ptr<Item> testNewItem = make_unique<Item>();
     testNewItem->setName("Big Red Cream Soda");
-    testNewItem->setQuantity(12);
     testNewItem->setSize(20.0);
     testNewItem->setSizeUnits("Fluid Ounce");
-    inv->addItem(testItemCode, *testNewItem);
 
-    Item *result = inv->getItemByVendCode(testItemCode);
+    unique_ptr<InventoryItem> testNewInvItem = make_unique<InventoryItem>();
+    testNewInvItem->setItem(*testNewItem);
+    testNewInvItem->setQuantity(12);
+    testNewInvItem->setMaxQuantity(12);
+
+    inv->addInventoryItem(testItemCode, *testNewInvItem);
+
+    InventoryItem *result = inv->getInventoryItemByVendCode(testItemCode);
     // verify first item is still in inventory, not second
-    QCOMPARE(&(*testExistingItem), result);
+    QCOMPARE(&(*testExistingInvItem), result);
 
 }
 
@@ -137,10 +166,15 @@ void inventorytests::test_case_remove_item_true(){
     // Add an item to inventory in slot "T1"
     unique_ptr<Item> testExistingItem = make_unique<Item>();
     testExistingItem->setName("Mountain Dew");
-    testExistingItem->setQuantity(12);
     testExistingItem->setSize(20.0);
     testExistingItem->setSizeUnits("Fluid Ounce");
-    inv->addItem(testItemCode, *testExistingItem);
+
+    unique_ptr<InventoryItem> testInvItem = make_unique<InventoryItem>();
+    testInvItem->setItem(*testExistingItem);
+    testInvItem->setQuantity(12);
+    testInvItem->setMaxQuantity(12);
+
+    inv->addInventoryItem(testItemCode, *testInvItem);
 
     // remove the item
     bool result = inv->removeItem(testItemCode);
@@ -165,14 +199,19 @@ void inventorytests::test_case_get_item_returns_item(){
     // Add an item to inventory in slot "T1"
     unique_ptr<Item> testExistingItem = make_unique<Item>();
     testExistingItem->setName("Mountain Dew");
-    testExistingItem->setQuantity(12);
     testExistingItem->setSize(20.0);
     testExistingItem->setSizeUnits("Fluid Ounce");
-    inv->addItem(testItemCode, *testExistingItem);
+
+    unique_ptr<InventoryItem> testInvItem = make_unique<InventoryItem>();
+    testInvItem->setItem(*testExistingItem);
+    testInvItem->setQuantity(12);
+    testInvItem->setMaxQuantity(12);
+
+    inv->addInventoryItem(testItemCode, *testInvItem);
 
     // remove the item
-    Item *result = inv->getItemByVendCode(testItemCode);
-    QCOMPARE(result, &(*testExistingItem));
+    InventoryItem *result = inv->getInventoryItemByVendCode(testItemCode);
+    QCOMPARE(result, &(*testInvItem));
 }
 
 // test verifies that getItem returns a nullptr when no item found.
@@ -180,7 +219,7 @@ void inventorytests::test_case_get_item_returns_nullptr(){
     unique_ptr<Inventory> inv = make_unique<Inventory>();
     string testItemCode = "T1";
 
-    Item *result = inv->getItemByVendCode(testItemCode);
+    InventoryItem *result = inv->getInventoryItemByVendCode(testItemCode);
     QCOMPARE(result, nullptr);
 }
 

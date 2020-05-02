@@ -2,19 +2,19 @@
 #define INVENTORY_H
 #include <map>
 #include <memory>
-#include "item.h"
+#include "inventoryitem.h"
 
 using namespace std;
 
 class Inventory
 {
 private:
-    map<string, Item*> items;
+    map<string, InventoryItem*> items;
 public:
     Inventory();
     ~Inventory();
-    Item* getItemByVendCode(string vc);
-    bool addItem(string vc, Item &item);
+    InventoryItem* getInventoryItemByVendCode(string vc);
+    bool addInventoryItem(string vc, InventoryItem &ii);
     bool removeItem(string vc);
 
     void readJson(const QJsonObject &json);

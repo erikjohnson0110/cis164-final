@@ -9,6 +9,8 @@ TEMPLATE = app
 SOURCES +=  tst_inventorytests.cpp \
     ../src/item.cpp \
     ../src/inventory.cpp \
+    ../src/inventoryitem.cpp \
     ../src/item.h \
-    ../src/inventory.h
+    ../src/inventory.h \
+    ../src/inventoryitem.h
 INCLUDEPATH += ../src

@@ -10,20 +10,12 @@ class Item
 private:
     string name;
     double price;
-    int quantity;
-    int maxQuantity;
     double size;
     string sizeUnits;
 public:
     Item();
-    Item(string, double, int, double, string);
+    Item(string, double, double, string);
     ~Item();
-
-    int getQuantity();
-    void setQuantity(int);
-
-    int getMaxQuantity();
-    void setMaxQuantity(int);
 
     string getName();
     void setName(string);
@@ -36,8 +28,6 @@ public:
 
     string getSizeUnits();
     void setSizeUnits(string);
-
-    bool sellItem();
 
     void readJson(const QJsonObject &json);
     void writeJson(QJsonObject &json) const;

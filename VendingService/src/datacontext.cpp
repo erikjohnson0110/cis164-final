@@ -13,18 +13,18 @@ DataContext::DataContext()
     VendingMachine *mcMachineTwo = new VendingMachine(2, "2000 64th Ave", MachineModel::VM4000);
     VendingMachine *mcMachineThree = new VendingMachine(3, "475 Fake Blvd", MachineModel::VM4000);
 
-    mcMachineOne->addItem("A1", *createMountainDew());
-    mcMachineOne->addItem("A2", *createMountainDew());
-    mcMachineOne->addItem("A3", *createBottledWater());
-    mcMachineOne->addItem("A4", *createBottledWater());
+    mcMachineOne->addInventoryItem("A1", *createMountainDew(20,20));
+    mcMachineOne->addInventoryItem("A2", *createMountainDew(20,20));
+    mcMachineOne->addInventoryItem("A3", *createBottledWater(20,20));
+    mcMachineOne->addInventoryItem("A4", *createBottledWater(20,20));
 
-    mcMachineTwo->addItem("A1", *createSlimJim());
-    mcMachineTwo->addItem("A2", *createEggSaladSandwich());
+    mcMachineTwo->addInventoryItem("A1", *createSlimJim(50,50));
+    mcMachineTwo->addInventoryItem("A2", *createEggSaladSandwich(10,10));
 
-    mcMachineThree->addItem("A1", *createSlimJim());
-    mcMachineThree->addItem("A2", *createEggSaladSandwich());
-    mcMachineThree->addItem("A3", *createEggSaladSandwich());
-    mcMachineThree->addItem("A4", *createEggSaladSandwich());
+    mcMachineThree->addInventoryItem("A1", *createSlimJim(50,50));
+    mcMachineThree->addInventoryItem("A2", *createEggSaladSandwich(10,10));
+    mcMachineThree->addInventoryItem("A3", *createEggSaladSandwich(10,10));
+    mcMachineThree->addInventoryItem("A4", *createEggSaladSandwich(10,10));
 
 
     corpOne->addMachine(mcMachineOne->getId(), *mcMachineOne);
@@ -38,19 +38,19 @@ DataContext::DataContext()
     VendingMachine *ovMachineTwo = new VendingMachine(2, "303 2nd St", MachineModel::FoodBoxXD);
     VendingMachine *ovMachineThree = new VendingMachine(3, "1020 Quiet Ln", MachineModel::Vendtron20);
 
-    ovMachineOne->addItem("A1", *createMountainDew());
-    ovMachineOne->addItem("A2", *createMountainDew());
-    ovMachineOne->addItem("A3", *createBottledWater());
+    ovMachineOne->addInventoryItem("A1", *createMountainDew(20,20));
+    ovMachineOne->addInventoryItem("A2", *createMountainDew(20,20));
+    ovMachineOne->addInventoryItem("A3", *createBottledWater(20,20));
 
-    ovMachineTwo->addItem("A1", *createSlimJim());
-    ovMachineTwo->addItem("A2", *createEggSaladSandwich());
-    ovMachineTwo->addItem("A3", *createEggSaladSandwich());
-    ovMachineTwo->addItem("A4", *createEggSaladSandwich());
+    ovMachineTwo->addInventoryItem("A1", *createSlimJim(50,50));
+    ovMachineTwo->addInventoryItem("A2", *createEggSaladSandwich(10,10));
+    ovMachineTwo->addInventoryItem("A3", *createEggSaladSandwich(10,10));
+    ovMachineTwo->addInventoryItem("A4", *createEggSaladSandwich(10,10));
 
-    ovMachineThree->addItem("A1", *createSlimJim());
-    ovMachineThree->addItem("A2", *createEggSaladSandwich());
-    ovMachineThree->addItem("A3", *createMountainDew());
-    ovMachineThree->addItem("A4", *createBottledWater());
+    ovMachineThree->addInventoryItem("A1", *createSlimJim(50,50));
+    ovMachineThree->addInventoryItem("A2", *createEggSaladSandwich(10,10));
+    ovMachineThree->addInventoryItem("A3", *createMountainDew(20,20));
+    ovMachineThree->addInventoryItem("A4", *createBottledWater(20,20));
 
     corpTwo->addMachine(ovMachineOne->getId(), *ovMachineOne);
     corpTwo->addMachine(ovMachineTwo->getId(), *ovMachineTwo);
@@ -64,24 +64,24 @@ DataContext::DataContext()
     VendingMachine *fbMachineThree = new VendingMachine(3, "867 Rock Ct", MachineModel::VM4000);
     VendingMachine *fbMachineFour = new VendingMachine(4, "777 Lucky Ln", MachineModel::Vendtron20);
 
-    fbMachineOne->addItem("A1", *createMountainDew());
-    fbMachineOne->addItem("A2", *createMountainDew());
-    fbMachineOne->addItem("A3", *createBottledWater());
-    fbMachineOne->addItem("A4", *createBottledWater());
+    fbMachineOne->addInventoryItem("A1", *createMountainDew(20,20));
+    fbMachineOne->addInventoryItem("A2", *createMountainDew(20,20));
+    fbMachineOne->addInventoryItem("A3", *createBottledWater(20,20));
+    fbMachineOne->addInventoryItem("A4", *createBottledWater(20,20));
 
-    fbMachineTwo->addItem("A1", *createMountainDew());
-    fbMachineTwo->addItem("A2", *createMountainDew());
-    fbMachineTwo->addItem("A3", *createBottledWater());
+    fbMachineTwo->addInventoryItem("A1", *createMountainDew(20,20));
+    fbMachineTwo->addInventoryItem("A2", *createMountainDew(20,20));
+    fbMachineTwo->addInventoryItem("A3", *createBottledWater(20,20));
 
-    fbMachineThree->addItem("A1", *createEggSaladSandwich());
-    fbMachineThree->addItem("A2", *createEggSaladSandwich());
-    fbMachineThree->addItem("A3", *createSlimJim());
-    fbMachineThree->addItem("A4", *createSlimJim());
+    fbMachineThree->addInventoryItem("A1", *createEggSaladSandwich(10,10));
+    fbMachineThree->addInventoryItem("A2", *createEggSaladSandwich(10,10));
+    fbMachineThree->addInventoryItem("A3", *createSlimJim(50,50));
+    fbMachineThree->addInventoryItem("A4", *createSlimJim(50,50));
 
-    fbMachineFour->addItem("A1", *createMountainDew());
-    fbMachineFour->addItem("A2", *createBottledWater());
-    fbMachineFour->addItem("A3", *createEggSaladSandwich());
-    fbMachineFour->addItem("A4", *createEggSaladSandwich());
+    fbMachineFour->addInventoryItem("A1", *createMountainDew(20,20));
+    fbMachineFour->addInventoryItem("A2", *createBottledWater(20,20));
+    fbMachineFour->addInventoryItem("A3", *createEggSaladSandwich(10,10));
+    fbMachineFour->addInventoryItem("A4", *createEggSaladSandwich(10,10));
 
     corpThree->addMachine(fbMachineOne->getId(), *fbMachineOne);
     corpThree->addMachine(fbMachineTwo->getId(), *fbMachineTwo);
@@ -140,54 +140,65 @@ Company* DataContext::getCompanyByName(string cn)
     return returnVal;
 }
 
-Item* DataContext::createMountainDew(){
-    Item *returnValue = new Item();
+InventoryItem* DataContext::createMountainDew(int q, int mq){
+    InventoryItem *returnValue = new InventoryItem();
+    Item *md = new Item();
+    md->setName("Mountain Dew");
+    md->setPrice(1.49);
+    md->setSize(20.0);
+    md->setSizeUnits("Fluid Ounce");
 
-    returnValue->setName("Mountain Dew");
-    returnValue->setPrice(1.49);
-    returnValue->setQuantity(12);
-    returnValue->setMaxQuantity(12);
-    returnValue->setSize(20.0);
-    returnValue->setSizeUnits("Fluid Ounce");
-
-    return returnValue;
-}
-
-Item* DataContext::createBottledWater(){
-    Item *returnValue = new Item();
-
-    returnValue->setName("Aquafina");
-    returnValue->setPrice(1.49);
-    returnValue->setQuantity(12);
-    returnValue->setMaxQuantity(12);
-    returnValue->setSize(20.0);
-    returnValue->setSizeUnits("Fluid Ounce");
+    returnValue->setItem(*md);
+    returnValue->setQuantity(q);
+    returnValue->setMaxQuantity(mq);
 
     return returnValue;
 }
 
-Item* DataContext::createSlimJim(){
-    Item *returnValue = new Item();
+InventoryItem* DataContext::createBottledWater(int q, int mq){
+    InventoryItem *returnValue = new InventoryItem();
+    Item *bw = new Item();
 
-    returnValue->setName("Slim Jim");
-    returnValue->setPrice(0.99);
-    returnValue->setQuantity(25);
-    returnValue->setMaxQuantity(25);
-    returnValue->setSize(2);
-    returnValue->setSizeUnits("Ounce");
+    bw->setName("Aquafina");
+    bw->setPrice(1.49);
+    bw->setSize(20.0);
+    bw->setSizeUnits("Fluid Ounce");
+
+    returnValue->setItem(*bw);
+    returnValue->setQuantity(q);
+    returnValue->setMaxQuantity(mq);
 
     return returnValue;
 }
 
-Item* DataContext::createEggSaladSandwich(){
-    Item *returnValue = new Item();
+InventoryItem* DataContext::createSlimJim(int q, int mq){
+    InventoryItem *returnValue = new InventoryItem();
+    Item *sj = new Item();
 
-    returnValue->setName("Egg Salad Sandwich");
-    returnValue->setPrice(2.49);
-    returnValue->setQuantity(10);
-    returnValue->setMaxQuantity(10);
-    returnValue->setSize(6);
-    returnValue->setSizeUnits("Ounce");
+    sj->setName("Slim Jim");
+    sj->setPrice(0.99);
+    sj->setSize(2);
+    sj->setSizeUnits("Ounce");
+
+    returnValue->setItem(*sj);
+    returnValue->setQuantity(q);
+    returnValue->setMaxQuantity(mq);
+
+    return returnValue;
+}
+
+InventoryItem* DataContext::createEggSaladSandwich(int q, int mq){
+    InventoryItem *returnValue = new InventoryItem();
+    Item *es = new Item();
+
+    es->setName("Egg Salad Sandwich");
+    es->setPrice(2.49);
+    es->setSize(6);
+    es->setSizeUnits("Ounce");
+
+    returnValue->setItem(*es);
+    returnValue->setQuantity(q);
+    returnValue->setMaxQuantity(mq);
 
     return returnValue;
 }

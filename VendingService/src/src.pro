@@ -22,6 +22,7 @@ SOURCES += \
         company.cpp \
         datacontext.cpp \
         inventory.cpp \
+        inventoryitem.cpp \
         item.cpp \
         main.cpp \
         vendingmachine.cpp
@@ -34,12 +35,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     company.h \
     datacontext.h \
-    drinkitem.h \
     enums.h \
-    fooditem.h \
     httplib.h \
     httpserver.h \
     inventory.h \
+    inventoryitem.h \
     item.h \
     qtservice.h \
     vendingmachine.h

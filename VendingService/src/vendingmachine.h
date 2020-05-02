@@ -36,8 +36,8 @@ public:
     void setModel(MachineModel);
     MachineModel getModel();
 
-    Item* getItemByVendCode(string vc);
-    bool addItem(string vc, Item &item);
+    InventoryItem* getInventoryItemByVendCode(string vc);
+    bool addInventoryItem(string vc, InventoryItem &item);
     bool removeItem(string vc);
 
     void readJson(const QJsonObject &json);

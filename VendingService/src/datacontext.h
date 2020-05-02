@@ -2,6 +2,7 @@
 #define DATACONTEXT_H
 #include <map>
 #include "company.h"
+#include "inventoryitem.h"
 
 using namespace std;
 
@@ -11,10 +12,10 @@ class DataContext
 {
 private:
     map<string, Company*> companies;
-    Item* createMountainDew();
-    Item* createBottledWater();
-    Item* createSlimJim();
-    Item* createEggSaladSandwich();
+    InventoryItem* createMountainDew(int, int);
+    InventoryItem* createBottledWater(int, int);
+    InventoryItem* createSlimJim(int, int);
+    InventoryItem* createEggSaladSandwich(int, int);
 public:
     DataContext();
     ~DataContext();
