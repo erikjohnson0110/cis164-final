@@ -26,8 +26,41 @@ public:
         svr.Get("/", [this](const Request&, Response& res) {
             stringstream body;
             body << "<html><h1>Welcome to the VendoMatic(c) API</h1>";
-            body << "<p>The API endpoint is http://localhost:" << this->port << "</p>";
-            body << "<p>INSERT API RESOURCES HERE</p></html>";
+            body << "<p>The API domain is http://localhost:" << this->port << "</p>";
+
+            body << "<h1 style=\"margin-top: 50px;\">API Endpoints</h1>";
+
+            body << "<h3>GET - /machines/{name}</h3>" ;
+            body << "<p>Parameters:</p>";
+            body << "<p>@name - (company name)</p>";
+            body << "<p style=\"margin-bottom: 50px;\">Example: http://domain:port/machines/?name=Mego-Corp</p>";
+
+            body << "<h3>GET - /machineStatus/{name},{machineId}</h3>" ;
+            body << "<p>Parameters:</p>";
+            body << "<p>@name - (company name)</p>";
+            body << "<p>@machineId - (Vending Machine ID)</p>";
+            body << "<p style=\"margin-bottom: 50px;\">Example: http://domain:port/machineStatus/?name=Mego-Corp&machineId=1</p>";
+
+            body << "<h3>GET - /activateMachine/{name},{machineId}</h3>" ;
+            body << "<p>Parameters:</p>";
+            body << "<p>@name - (company name)</p>";
+            body << "<p>@machineId - (Vending Machine ID)</p>";
+            body << "<p style=\"margin-bottom: 50px;\">Example: http://domain:port/activateMachine/?name=Mego-Corp&machineId=1</p>";
+
+            body << "<h3>GET - /deactivateMachine/{name},{machineId}</h3>" ;
+            body << "<p>Parameters:</p>";
+            body << "<p>@name - (company name)</p>";
+            body << "<p>@machineId - (Vending Machine ID)</p>";
+            body << "<p style=\"margin-bottom: 50px;\">Example: http://domain:port/deactivateMachine/?name=Mego-Corp&machineId=1</p>";
+
+            body << "<h3>GET - /sellItem/{name},{machineId},{vendCode}</h3>" ;
+            body << "<p>Parameters:</p>";
+            body << "<p>@name - (company name)</p>";
+            body << "<p>@machineId - (Vending Machine ID)</p>";
+            body << "<p style=\"margin-bottom: 50px;\">Example: http://domain:port/sellItem/?name=Mego-Corp&machineId=1&vendCode=A1</p>";
+
+            body << "<p>INSERT API RESOURCES HERE</p>";
+            body << "</html>";
             res.set_content(body.str(), "text/html");
         });
 
@@ -299,6 +332,7 @@ public:
                                     sold = item->sellItem();
                                 }
                                 if (sold){
+                                    machine->setTotalSales((machine->getTotalSales() + item->getPrice()));
                                     responseObject["responseMessage"] = "Item Sold Successfully";
                                 }
                                 else

@@ -11,6 +11,7 @@ private:
     int id;
     bool active;
     string location;
+    double totalSales;
     MachineModel model;
     Inventory inventory;
 
@@ -28,6 +29,9 @@ public:
 
     void setLocation(string);
     string getLocation();
+
+    void setTotalSales(double);
+    double getTotalSales();
 
     void setModel(MachineModel);
     MachineModel getModel();

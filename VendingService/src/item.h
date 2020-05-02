@@ -9,12 +9,13 @@ class Item
 {
 private:
     string name;
+    double price;
     int quantity;
     double size;
     string sizeUnits;
 public:
     Item();
-    Item(string, int, double, string);
+    Item(string, double, int, double, string);
     ~Item();
 
     int getQuantity();
@@ -22,6 +23,9 @@ public:
 
     string getName();
     void setName(string);
+
+    double getPrice();
+    void setPrice(double);
 
     double getSize();
     void setSize(double);

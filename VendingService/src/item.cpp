@@ -3,8 +3,9 @@
 Item::Item(){
 }
 
-Item::Item(string n, int q, double s, string su){
+Item::Item(string n, double p, int q, double s, string su){
     this->name = n;
+    this->price = p;
     this->quantity = q;
     this->size = s;
     this->sizeUnits = su;
@@ -27,6 +28,14 @@ string Item::getName(){
 
 void Item::setName(string n){
     this->name = n;
+}
+
+double Item::getPrice(){
+    return this->price;
+}
+
+void Item::setPrice(double p){
+    this->price = p;
 }
 
 double Item::getSize(){
@@ -63,6 +72,14 @@ void Item::readJson(const QJsonObject &json){
         this->setName(nullptr);
     }
 
+    // price
+    if (json.contains("price") && json["price"].isDouble()){
+        this->setPrice(json["price"].toDouble());
+    }
+    else{
+        this->setPrice(0.0);
+    }
+
     // quantity
     if (json.contains("quantity") && json["quantity"].isDouble()){
         this->setQuantity(json["quantity"].toInt());
@@ -90,6 +107,7 @@ void Item::readJson(const QJsonObject &json){
 }
 void Item::writeJson(QJsonObject &json) const{
     json["name"] =  QString::fromStdString(this->name);
+    json["price"] = this->price;
     json["quantity"] =  this->quantity;
     json["size"] =  this->size;
     json["sizeUnits"] =  QString::fromStdString(this->sizeUnits);

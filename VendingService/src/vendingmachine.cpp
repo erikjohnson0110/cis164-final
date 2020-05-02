@@ -56,6 +56,14 @@ string VendingMachine::getLocation()
     return this->location;
 }
 
+void VendingMachine::setTotalSales(double s){
+    this->totalSales = s;
+}
+
+double VendingMachine::getTotalSales(){
+    return this->totalSales;
+}
+
 void VendingMachine::setModel(MachineModel mod)
 {
     this->model = mod;
@@ -114,6 +122,14 @@ void VendingMachine::readJson(const QJsonObject &json)
         this->setLocation(nullptr);
     }
 
+    // double totalSales
+    if (json.contains("totalSales") && json["totalSales"].isDouble()){
+        this->setTotalSales(json["totalSales"].toDouble());
+    }
+    else{
+        this->setTotalSales(0.0);
+    }
+
     //MachineModel model;
     if (json.contains("model") && json["model"].isString()){
         // TODO
@@ -127,6 +143,7 @@ void VendingMachine::writeJson(QJsonObject &json) const
     json["id"] =  this->id;
     json["active"] =  this->active;
     json["location"] =  QString::fromStdString(this->location);
+    json["totalSales"] = this->totalSales;
     json["model"] =  QString::fromStdString(machineModelNames[(int)this->model]);
     this->inventory.writeJson(json);
 }
