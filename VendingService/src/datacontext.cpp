@@ -146,6 +146,7 @@ Item* DataContext::createMountainDew(){
     returnValue->setName("Mountain Dew");
     returnValue->setPrice(1.49);
     returnValue->setQuantity(12);
+    returnValue->setMaxQuantity(12);
     returnValue->setSize(20.0);
     returnValue->setSizeUnits("Fluid Ounce");
 
@@ -158,6 +159,7 @@ Item* DataContext::createBottledWater(){
     returnValue->setName("Aquafina");
     returnValue->setPrice(1.49);
     returnValue->setQuantity(12);
+    returnValue->setMaxQuantity(12);
     returnValue->setSize(20.0);
     returnValue->setSizeUnits("Fluid Ounce");
 
@@ -170,6 +172,7 @@ Item* DataContext::createSlimJim(){
     returnValue->setName("Slim Jim");
     returnValue->setPrice(0.99);
     returnValue->setQuantity(25);
+    returnValue->setMaxQuantity(25);
     returnValue->setSize(2);
     returnValue->setSizeUnits("Ounce");
 
@@ -182,6 +185,7 @@ Item* DataContext::createEggSaladSandwich(){
     returnValue->setName("Egg Salad Sandwich");
     returnValue->setPrice(2.49);
     returnValue->setQuantity(10);
+    returnValue->setMaxQuantity(10);
     returnValue->setSize(6);
     returnValue->setSizeUnits("Ounce");
 

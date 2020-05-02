@@ -21,6 +21,13 @@ void Item::setQuantity(int q){
     this->quantity = q;
 }
 
+int Item::getMaxQuantity(){
+    return this->maxQuantity;
+}
+void Item::setMaxQuantity(int mq){
+    this->maxQuantity = mq;
+}
+
 
 string Item::getName(){
     return this->name;
@@ -88,6 +95,14 @@ void Item::readJson(const QJsonObject &json){
         this->setQuantity(0);
     }
 
+    // maxQuantity
+    if (json.contains("maxQuantity") && json["maxQuantity"].isDouble()){
+        this->setQuantity(json["maxQuantity"].toInt());
+    }
+    else{
+        this->setMaxQuantity(0);
+    }
+
     // size
     if (json.contains("size") && json["size"].isDouble()){
         this->setQuantity(json["size"].toDouble());
@@ -109,6 +124,7 @@ void Item::writeJson(QJsonObject &json) const{
     json["name"] =  QString::fromStdString(this->name);
     json["price"] = this->price;
     json["quantity"] =  this->quantity;
+    json["maxQuantity"] = this->maxQuantity;
     json["size"] =  this->size;
     json["sizeUnits"] =  QString::fromStdString(this->sizeUnits);
 }

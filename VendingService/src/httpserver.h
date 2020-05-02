@@ -373,6 +373,61 @@ public:
             }
         });
 
+        svr.Get(R"(/restockItem/)", [&](const Request& req, Response& res){
+            string corpName = "";
+            int machineId = -1;
+            string vendCode = "";
+            if (req.has_param("name") && req.has_param("machineId") && req.has_param("vendCode")){
+                corpName = req.get_param_value("name");
+                machineId = stoi(req.get_param_value("machineId"));
+                vendCode = req.get_param_value("vendCode");
+                Company *company = nullptr;
+                try {
+                    company = dc.getCompanyByName(corpName);
+                } catch (exception ex) {
+                    res.set_redirect(errorPage.c_str());
+                }
+
+                VendingMachine *machine = nullptr;
+
+                QJsonObject responseObject;
+                try {
+                    if (company != nullptr){
+                        machine = company->findMachineById(machineId);
+                        if (machine != nullptr){
+                            Item *item = machine->getItemByVendCode(vendCode);
+                            if (item != nullptr){
+                                int itemInventory = item->getQuantity();
+                                int numAdded = item->getMaxQuantity() - itemInventory;
+                                item->setQuantity(item->getMaxQuantity());
+                                responseObject["responseMessage"] = "Restock Completed";
+                                QJsonDocument doc(responseObject);
+                                string jsonString = doc.toJson().toStdString();
+                                res.set_content(jsonString, "application/json");
+                            }
+                            else
+                            {
+                                res.set_redirect(errorPage.c_str());
+                            }
+                        }
+                        else
+                        {
+                            res.set_redirect(errorPage.c_str());
+                        }
+                    }
+                    else
+                    {
+                        res.set_redirect(errorPage.c_str());
+                    }
+                } catch (exception ex) {
+                    res.set_redirect(errorPage.c_str());
+                }
+            }
+            else{
+                res.set_redirect(errorPage.c_str());
+            }
+        });
+
         cout << "Starting server at http://" << domain << ":" << port << endl;
         svr.listen(domain, port);
     }

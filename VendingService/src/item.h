@@ -11,6 +11,7 @@ private:
     string name;
     double price;
     int quantity;
+    int maxQuantity;
     double size;
     string sizeUnits;
 public:
@@ -20,6 +21,9 @@ public:
 
     int getQuantity();
     void setQuantity(int);
+
+    int getMaxQuantity();
+    void setMaxQuantity(int);
 
     string getName();
     void setName(string);
