@@ -7,7 +7,7 @@ enum class Weight
     Ounce,
     Pound,
     Gram,
-    Miligram,
+    Milligram,
     Kilogram
 };
 
@@ -29,6 +29,8 @@ enum class MachineModel
     FoodBoxXD
 };
 
+const std::string weightNames[] = {"Ounce", "Pound", "Gram", "Milligram", "Kilogram"};
+const std::string volumeNames[] = {"Ounce", "Gallon", "Quart", "Pint", "Liter", "Milliliter"};
 const std::string machineModelNames[] = {"TK421", "VM4000", "Vendtron20", "FoodBoxXD"};
 
 #endif // ENUMS_H
